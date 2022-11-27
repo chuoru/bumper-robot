@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>scart_mock_controller</name>
+  <version>0.0.0</version>
+  <description>The scart_mock_controller package</description>
+  <maintainer email="t.tran@qibitech.com">tran</maintainer>
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>rospy</depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>tf</depend>
+  <depend>dynamic_reconfigure</depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>rostest</build_depend>
+  <exec_depend>message_runtime</exec_depend>
+
+</package>

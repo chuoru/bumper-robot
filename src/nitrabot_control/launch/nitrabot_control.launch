@@ -1,0 +1,9 @@
+<launch>
+    <arg name="robot_port" default="/dev/ttyUSB0" />
+
+	<!-- launch communication with the robot -->
+	<node name="robot_communication" pkg="industrial_robot_qt" type="robot_communication" >
+		<param name="port" value="$(arg robot_port)" />
+	</node>
+	
+</launch>

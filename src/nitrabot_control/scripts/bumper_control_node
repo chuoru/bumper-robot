@@ -1,0 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import rospy
+from bumper_control.bumper_control import BumperControl
+
+try:
+    scart_mock_controller_node = BumperControl()
+    scart_mock_controller_node.run()
+except rospy.ROSInterruptException:
+    pass
