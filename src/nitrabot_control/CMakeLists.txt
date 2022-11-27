@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.8)
 project(nitrabot_control)
 
 find_package(catkin REQUIRED COMPONENTS
@@ -11,18 +11,13 @@ set(SOURCES
     )
 
 set(HEADERS
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/robot_communication/robotdata.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/robot_communication/robot_data.h
 )
 
 add_library(industrial ${SOURCES} ${HEADERS})
 
 
 catkin_python_setup()
-
-generate_messages(
-  DEPENDENCIES
-  std_msgs
-)
 
 ## Generate messages in the 'msg' folder
 add_message_files(
@@ -31,8 +26,18 @@ add_message_files(
   EncoderWheelVel.msg
 )
 
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
+
 catkin_package(
   CATKIN_DEPENDS rospy geometry_msgs std_msgs tf message_runtime
+)
+
+include_directories(
+  include
+  ${catkin_INCLUDE_DIRS}
 )
 
 install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})

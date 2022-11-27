@@ -14,18 +14,19 @@
  *
  * Publishes:
  * - Data type: sensor_msgs/BatteryState
- *		industrial_robot_qt/EncoderWheelVel
+ *		nitrabot_control/EncoderWheelVel
  * - Address: encoder
  *	      battery
  * ===============================================================================
  */
 
 #include <ros/ros.h>
-#include <SerialStream.h>
-#include <industrial_robot_qt/RobotWheelVel.h>
-#include <industrial_robot_qt/EncoderWheelVel.h>
+#include <libserial/SerialStream.h>
+#include <libserial/SerialPort.h>
+#include <nitrabot_control/RobotWheelVel.h>
+#include <nitrabot_control/EncoderWheelVel.h>
 #include <sensor_msgs/BatteryState.h>
-#include "robotdata.h"
+#include "robot_communication/robot_data.h"
 #include "geometry_msgs/Twist.h"
 
 using namespace LibSerial;
@@ -176,7 +177,7 @@ public:
 	this->send_right_wheel_ = 0;
 
 	this->nh_ = nh;
-	this->encoder_ = nh.advertise<industrial_robot_qt::EncoderWheelVel>("encoder", 1000);
+	this->encoder_ = nh.advertise<nitrabot_control::EncoderWheelVel>("encoder", 1000);
 	this->battery_ = nh.advertise<sensor_msgs::BatteryState>("battery", 1000);
     }
 
@@ -186,11 +187,11 @@ public:
         {
 	    // robot port settings
 	    robot_port_.Open(port_);
-	    robot_port_.SetBaudRate( SerialStreamBuf::BAUD_38400 );
-	    robot_port_.SetCharSize(SerialStreamBuf::CHAR_SIZE_8);
-	    robot_port_.SetNumOfStopBits(1);
-	    robot_port_.SetParity(SerialStreamBuf::PARITY_EVEN);
-	    robot_port_.SetFlowControl(SerialStreamBuf::FLOW_CONTROL_DEFAULT);
+	    robot_port_.SetBaudRate( BaudRate::BAUD_38400 );
+	    robot_port_.SetCharacterSize(CharacterSize::CHAR_SIZE_8);
+	    robot_port_.SetStopBits(StopBits::STOP_BITS_1);
+	    robot_port_.SetParity(Parity::PARITY_EVEN);
+	    robot_port_.SetFlowControl(FlowControl::FLOW_CONTROL_DEFAULT);
         }
         catch (int e)
         {
@@ -223,7 +224,7 @@ public:
 	    // if checksum wrong throw one byte away
 	    else {char throw_byte; robot_port_.get(throw_byte);}
 
-	    industrial_robot_qt::EncoderWheelVel encoder_msg;
+	    nitrabot_control::EncoderWheelVel encoder_msg;
 	    encoder_msg.enc_left_wheel = enc_left_wheel_;
 	    encoder_msg.enc_right_wheel = enc_right_wheel_;
 
@@ -277,7 +278,7 @@ public:
 	robot_port_.Close();
     }
 
-    void getWheelVel(const industrial_robot_qt::RobotWheelVel::ConstPtr &vel)
+    void getWheelVel(const nitrabot_control::RobotWheelVel::ConstPtr &vel)
     {
 	send_left_wheel_ = vel->left_wheel;
 	send_right_wheel_ = vel->right_wheel;

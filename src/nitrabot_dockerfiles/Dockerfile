@@ -21,6 +21,6 @@ RUN rosdep update && \
     rosdep install --from-paths src --ignore-src -r -y
 
 # Build ROS packages
-RUN catkin build && \
-   chmod 777 /root/catkin_ws/devel/setup.bash && \
-   chmod 755 /root
+# RUN catkin build && \
+#    chmod 777 /root/catkin_ws/devel/setup.bash && \
+#    chmod 755 /root
