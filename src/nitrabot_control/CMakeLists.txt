@@ -6,11 +6,29 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs std_msgs tf message_generation
 )
 
+set(SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/robot_communication/robot_data.cpp
+    )
+
+set(HEADERS
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/robot_communication/robotdata.h
+)
+
+add_library(industrial ${SOURCES} ${HEADERS})
+
+
 catkin_python_setup()
 
 generate_messages(
   DEPENDENCIES
   std_msgs
+)
+
+## Generate messages in the 'msg' folder
+add_message_files(
+  FILES
+  RobotWheelVel.msg
+  EncoderWheelVel.msg
 )
 
 catkin_package(
@@ -21,3 +39,7 @@ install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 
 catkin_install_python(PROGRAMS scripts/bumper_control_node
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
+
+add_executable(robot_communication src/robot_communication/robot_communication.cpp)
+target_link_libraries(robot_communication ${catkin_LIBRARIES} serial industrial)  

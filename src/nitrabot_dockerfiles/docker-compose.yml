@@ -7,7 +7,7 @@ services:
     command: stdbuf -o L roscore
     network_mode: host
 
-  agri_gazebo:
+  nitra_robot:
     user: root
     depends_on: 
       - ros-master

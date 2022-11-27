@@ -1,7 +1,8 @@
-FROM osrf/ros:noetic-desktop-full 
+# syntax=docker/dockerfile:1
+FROM ros:noetic-robot
 
 # copy install scripts
-COPY ./agribot_dockerfiles/install /root/install
+COPY ./nitrabot_dockerfiles/install /root/install
 
 # update and install dependencies
 RUN /bin/sh -e -c /root/install/i_dep.sh
