@@ -70,4 +70,4 @@ class BumperControl(object):
         """! Callback function for the control timer.
         @param[in] msg: odometry data in pose stamped form
         """
-        
+        pass
