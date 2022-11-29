@@ -4,7 +4,7 @@ import rospy
 from bumper_control.bumper_control import BumperControl
 
 try:
-    scart_mock_controller_node = BumperControl()
-    scart_mock_controller_node.run()
+    bumper_control_node = BumperControl()
+    bumper_control_node.run()
 except rospy.ROSInterruptException:
     pass
