@@ -6,7 +6,6 @@
 #
 # Distributed under terms of the MIT license.
 # Standard library
-import math
 
 # External library 
 import rospy
