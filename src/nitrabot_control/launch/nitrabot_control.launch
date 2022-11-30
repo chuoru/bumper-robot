@@ -2,8 +2,11 @@
     <arg name="port" default="/dev/ttyUSB0" />
 
 	<!-- launch communication with the robot -->
-	<node name="robot_communication" pkg="industrial_robot_qt" type="robot_communication" >
+	<node name="robot_communication" pkg="nitrabot_control" type="robot_communication" >
 		<param name="port" value="$(arg port)" />
 	</node>
+	
+	<!-- <node name="bumper_control" pkg="nitrabot_control" type="bumper_control_node.py" >
+	</node> -->
 
 </launch>
