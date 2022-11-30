@@ -6,6 +6,7 @@
 #
 # Distributed under terms of the MIT license.
 # Standard library
+import math
 
 # External library 
 import rospy
@@ -76,13 +77,13 @@ class BumperControl(object):
 
         self._x = 0
 
-        self._alpha = 0
+        self._alpha = math.pi / 2
 
-        self._d = 0
+        self._d = 10
 
-        self._alpha_1 = 0
+        self._alpha_1 = math.pi / 2
 
-        self._d_1 = 0
+        self._d_1 = 10
 
     def _left_bumper_callback(self, msg: Bool) -> None:
         """! Callback function for the left bumper rostopic.
@@ -112,9 +113,13 @@ class BumperControl(object):
                 self._model = "normal"
                 return
 
-            velocity = self._backing_motion[self._mode][self._index]
+            command = self._backing_motion[self._mode][self._index]
 
-            self._move_straight(velocity)
+            if command[0] != 0:
+                self._move_straight(command[0])
+
+            else: 
+                self._turn(command[1])
 
             self._index += 1
 
