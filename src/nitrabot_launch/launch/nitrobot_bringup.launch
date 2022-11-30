@@ -1,15 +1,15 @@
 <launch>
     <arg name="robot_port" default="/dev/ttyUSB0" />
-    <arg name="bumper_port" default="/dev/ttyUSB1" />
+    <arg name="bumper_port" default="/dev/ttyACM0" />
     <arg name="bumper_baud" default="9600" />
 
-	<include file="$(find nitrobot_control)/launch/nitrobot_control.launch" />
+	<include file="$(find nitrabot_control)/launch/nitrabot_control.launch">
 		<arg name="port" value="$(arg robot_port)"/>
 	</include>
 
-	<include file="$(find nitrobot_bumper)/launch/nitrobot_bumper.launch">
+	<include file="$(find nitrabot_bumper)/launch/nitrabot_bumper.launch">
 		<arg name="port" value="$(arg bumper_port)"/>
-		<arg name="baud" value="$(arg bumper_baud)"/>
+		<!-- <arg name="baud" value="$(arg bumper_baud)"/> -->
 	</include>
 
 </launch>
