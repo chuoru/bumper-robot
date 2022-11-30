@@ -21,7 +21,7 @@ void setup()
   nh.advertise(left_bumper_publisher);
 
   nh.advertise(right_bumper_publisher);
-  
+
 }
 
 
@@ -31,13 +31,13 @@ void loop()
 
   if (value != 0)
   {
-    left_bumper_msg.data = true;
+    left_bumper_msg.data = false;
 
     left_bumper_publisher.publish(&left_bumper_msg);
   }
   else
   {
-    left_bumper_msg.data = false;
+    left_bumper_msg.data = true;
 
     left_bumper_publisher.publish(&left_bumper_msg);
   }
@@ -46,13 +46,13 @@ void loop()
 
   if (value != 0)
   {
-    right_bumper_msg.data = true;
+    right_bumper_msg.data = false;
 
     right_bumper_publisher.publish(&right_bumper_msg);
   }
   else
   {
-    right_bumper_msg.data = false;
+    right_bumper_msg.data = true;
 
     right_bumper_publisher.publish(&right_bumper_msg);
   }

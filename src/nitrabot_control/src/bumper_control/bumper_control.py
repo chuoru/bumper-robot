@@ -80,11 +80,11 @@ class BumperControl(object):
 
         self._alpha = pi/2
 
-        self._d = 10
+        self._d = 1
 
-        self._alpha_1 = pi/2
+        self._alpha_1 = pi/4
 
-        self._d_1 = 10
+        self._d_1 = 2
 
     def _left_bumper_callback(self, msg: Bool) -> None:
         """! Callback function for the left bumper rostopic.
@@ -175,6 +175,8 @@ class BumperControl(object):
             self._index = 0
             self._mode = "collide_right"
 
+	#rospy.loginfo(self._mode);
+	
     def _move_straight(self, velocity: float) -> None:
         """! Move robot straight
         @param[in] velocity: linear velocity of robot 
