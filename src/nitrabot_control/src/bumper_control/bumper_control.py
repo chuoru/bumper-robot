@@ -11,6 +11,7 @@
 import rospy
 from std_msgs.msg import Bool
 from geometry_msgs.msg import Twist
+from math import pi
 
 # Internal library 
 
@@ -76,13 +77,13 @@ class BumperControl(object):
 
         self._x = 0
 
-        self._alpha = 0
+        self._alpha = pi/2
 
-        self._d = 0
+        self._d = 10
 
-        self._alpha_1 = 0
+        self._alpha_1 = pi/2
 
-        self._d_1 = 0
+        self._d_1 = 10
 
     def _left_bumper_callback(self, msg: Bool) -> None:
         """! Callback function for the left bumper rostopic.
